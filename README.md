@@ -9,7 +9,7 @@ It's a minimal yet dynamic representation of my journey as a developer, highligh
 
 📸 Live Demo
 
-👉 https://ishrat.vercel.app](https://ishrat.vercel.app](https://react-portfolio-iota-smoky.vercel.app/
+👉 (https://react-portfolio-iota-smoky.vercel.app)
 
 ---
 
@@ -22,7 +22,7 @@ It's a minimal yet dynamic representation of my journey as a developer, highligh
 
 ---
 
-## 📁 Folder Structure
+📁 Folder Structure
 
 
 react-portfolio/
