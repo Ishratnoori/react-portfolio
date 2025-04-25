@@ -20,6 +20,7 @@ const heroText = [
   "Full-Stack Developer",
   "Camera Lens Addict",
   "ML Explorer",
+  "Frontend Dev",
   "UI/UX Designer",
   "Creative Strategist",
   
@@ -96,7 +97,7 @@ export default function Portfolio() {
           <Skill icon={<FaCamera />} label="Photography" />
           <Skill icon={<FaCode />} label="Full-Stack Dev" />
           <Skill icon={<FaDesktop />} label="UI/UX" />
-            <Skill icon={<FaDatabase />} label="SQL" />
+          <Skill icon={<FaDatabase />} label="SQL" />
         </div>
       </section>
 
@@ -108,24 +109,9 @@ export default function Portfolio() {
           <ProjectCard title="Employee Attrition Prediction" description="Ensemble ML model using Random Forest and XGBoost to predict employee attrition with 85% accuracy." />
           <ProjectCard title="Grbify & GoPhish" description="A demo and hands-on workshop to simulate phishing attacks for awareness training using Grbify and GoPhish platforms." />
           <ProjectCard title="Campus Event Scheduler" description="A Python + MySQL project for managing college events, giving organizers full control over scheduling." />
-          <ProjectCard title="Building..." description="Coming soooonn!" />
+          <ProjectCard title="Building..." description="Coming sooooon!" />
         </div>
       </section>
-
-      <section id="achievements" className="text-center py-16 bg-gray-50">
-        <h2 className="text-4xl font-bold text-purple-600 mb-8">Achievements</h2>
-        <div className="flex flex-wrap justify-center gap-6">
-        <Achievement icon={<FaAward />} label="Limca Book of Records — Event participant with Toastmasters International"/>
-          <Achievement icon={<FaTrophy />} label="300+ Days Badge - LeetCode & CodeChef" />
-          <Achievement icon={<FaStar />} label="HackerRank 5★ in C & Python" />
-          <Achievement icon={<FaAward />} label="Top Voice - LinkedIn (Social Media & Critical Thinking)" />
-          <Achievement icon={<FaBolt />} label="Hackathon — Socio-Tech 24-Hour Challenge Participant" />
-          <Achievement icon={<FaMapMarkedAlt />} label="Appathon — Tourist Guide App" />
-          <Achievement icon={<FaShieldAlt />} label="Ideathon — Phishing Attacks Awareness" />
-          <Achievement icon={<FaBullhorn />} label="Design & Media Lead — TECHNOVA 2025, A National Level College Fest" />
-        </div>
-      </section>
-
       <section id="certifications" className="text-center py-16 bg-gray-50">
         <h2 className="text-4xl font-bold text-purple-600 mb-8">Certifications</h2>
         <div className="flex flex-wrap justify-center gap-6">
@@ -154,6 +140,21 @@ export default function Portfolio() {
          
         </div>
       </section>
+      <section id="achievements" className="text-center py-16 bg-gray-50">
+        <h2 className="text-4xl font-bold text-purple-600 mb-8">Achievements</h2>
+        <div className="flex flex-wrap justify-center gap-6">
+        <Achievement icon={<FaAward />} label="Limca Book of Records — Event participant with Toastmasters International"/>
+          <Achievement icon={<FaTrophy />} label="300+ Days Badge - LeetCode & CodeChef" />
+          <Achievement icon={<FaStar />} label="HackerRank 5★ in C & Python" />
+          <Achievement icon={<FaBolt />} label="Hackathon — Socio-Tech 24-Hour Challenge Participant" />
+          <Achievement icon={<FaAward />} label="Top Voice - LinkedIn (Social Media & Critical Thinking)" />
+          <Achievement icon={<FaMapMarkedAlt />} label="Appathon — Tourist Guide App" />
+          <Achievement icon={<FaShieldAlt />} label="Ideathon — Phishing Attacks Awareness" />
+          <Achievement icon={<FaBullhorn />} label="Design & Media Lead — TECHNOVA 2025, A National Level College Fest" />
+        </div>
+      </section>
+
+      
 
       <footer className="text-center py-8 text-gray-600">
         Made with 💜 by Ishrat Noori
