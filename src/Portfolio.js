@@ -65,7 +65,7 @@ export default function Portfolio() {
         </p>
         <div className="flex gap-4">
           <a
-            href="https://drive.google.com/file/d/1s1Mf9uAnN_xssGS-3TWKgPgQd0z7o4l2/view?usp=sharing"
+            href="https://drive.google.com/file/d/12pUp0zEQc2v-BIUR4N4ew9YLKLlyuxkC/view?usp=drive_link"
             target="_blank"
             rel="noopener noreferrer"
             className="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg shadow-md transition"
