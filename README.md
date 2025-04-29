@@ -1,7 +1,5 @@
 
 ---
-
-```markdown
 🌐 Ishrat's  Portfolio
 
 Welcome to my personal portfolio built with React and Tailwind CSS.  
@@ -24,7 +22,7 @@ It's a minimal yet dynamic representation of my journey as a developer, highligh
 
 📁 Folder Structure
 
-
+```
 react-portfolio/
 │
 ├── public/                 
@@ -37,7 +35,7 @@ react-portfolio/
 └── package.json           
 ```
 
----
+
 
 ## 🚀 Getting Started
 
@@ -96,4 +94,4 @@ npm start
 This project is open source and available under the [MIT License](LICENSE).
 
 
-> Made with ❤️ by Ishrat noori — Fueled by React & good coffee ☕
+Made with ❤️ by Ishrat noori — Fueled by React & good coffee ☕
