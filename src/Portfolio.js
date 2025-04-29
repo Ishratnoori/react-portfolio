@@ -17,7 +17,7 @@ import {
 
 const heroText = [
   "Cybersecurity Enthusiast",
-  "Full-Stack Developer",
+  "Full-Stack Dev",
   "Camera Lens Addict",
   "ML Explorer",
   "Frontend Dev",
