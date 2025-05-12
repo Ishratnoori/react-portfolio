@@ -110,8 +110,8 @@ export default function Portfolio() {
       <section id="projects" className="text-center py-16">
         <h2 className="text-4xl font-bold text-purple-600 mb-8">Projects</h2>
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          <ProjectCard title="Swachhata@Svecw" description="A MERN stack web platform enabling students to report campus cleanliness issues with photo uploads and real-time status tracking." githubLink="https://github.com/Ishratnoori/Swachatha-SVECW" />
-          <ProjectCard title="BuddyBoard" description="Interactive flashcard deck system to enhance personalized learning experiences using MEAN (Angular) components." githubLink="https://github.com/Ishratnoori/BUDDY_BOARD_Infosys_Internship_Oct2024" />
+          <ProjectCard title="Swachhata@Svecw" description="A MERN stack web platform enabling students to report campus cleanliness issues with photo uploads and real-time status tracking." githubLink="https://github.com/Ishratnoori/Swachatha-SVECW" liveDemoLink="https://swachatha-svecw.vercel.app/" />
+          <ProjectCard title="BuddyBoard" description="Interactive flashcard deck system to enhance personalized learning experiences using MEAN (Angular) components." githubLink="https://github.com/Ishratnoori/BUDDY_BOARD_Infosys_Internship_Oct2024" liveDemoLink="https://buddyboard.vercel.app/" />
           <ProjectCard title="Employee Attrition Prediction" description="Ensemble ML model using Random Forest and XGBoost to predict employee attrition with 85% accuracy." githubLink="https://github.com/Ishratnoori/Employee-Attrition" />
           <ProjectCard title="Grbify & GoPhish" description="A demo and hands-on workshop to simulate phishing attacks for awareness training using Grbify and GoPhish platforms." />
           <ProjectCard title="Campus Event Scheduler" description="A Python + MySQL project for managing college events, giving organizers full control over scheduling." githubLink="https://github.com/Ishratnoori/CampusEventScheduler" />
@@ -208,7 +208,7 @@ function Skill({ icon, label }) {
   );
 }
 
-function ProjectCard({ title, description, githubLink }) {
+function ProjectCard({ title, description, githubLink, liveDemoLink }) {
   return (
     <div className="border border-purple-200 rounded-lg p-6 shadow hover:shadow-lg transition">
       <h3 className="text-xl font-semibold text-purple-700 mb-2">{title}</h3>
@@ -225,6 +225,19 @@ function ProjectCard({ title, description, githubLink }) {
           </svg>
           View on GitHub
         </a>
+      )}
+        {liveDemoLink && (
+          <a
+            href={liveDemoLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center text-purple-600 hover:text-green-700"
+          >
+            <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10.185 0l9.815 10-9.815 10v-6.563h-6.371v-6.875h6.371v-6.562z" />
+            </svg>
+            Click here for Live Demo
+          </a>
       )}
     </div>
   );
