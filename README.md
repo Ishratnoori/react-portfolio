@@ -1,11 +1,12 @@
 
 ---
-🌐 Ishrat's  Portfolio
-
+🌐**Ishrat's  Portfolio**
+---
 Welcome to my personal portfolio built with React and Tailwind CSS.  
-It's a minimal yet dynamic representation of my journey as a developer, highlighting projects, skills, and a bit of flair 💫.
+It's a minimal yet dynamic representation of my journey as a developer, highlighting projects, skills, and a bit of flair.
 
-📸 Live Demo
+
+📸 **Live Demo**
 
 👉 (https://react-portfolio-iota-smoky.vercel.app)
 
