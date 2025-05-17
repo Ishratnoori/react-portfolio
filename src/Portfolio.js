@@ -32,6 +32,8 @@ import {
   FaSun,
   FaMoon,
   FaCoffee,
+  FaChevronLeft,
+  FaChevronRight,
 } from "react-icons/fa";
 import profilePhoto from './images/profile.jpg';
 
@@ -44,6 +46,34 @@ const heroText = [
   "UI/UX Designer",
   "Creative Strategist",
   
+];
+
+// Add the photography data
+const photographyData = [
+  {
+    id: 1,
+    title: "Nature's Beauty",
+    description: "Hidden Sun in the Clouds",
+    imageUrl: "/images/photography/hiddensunundersky.jpg",
+  },
+  {
+    id: 2,
+    title: "Orange Glow",
+    description: "Citrus meets creativity in the dark.",
+    imageUrl: "/images/photography/orange.jpg",
+  },
+  {
+    id: 3,
+    title: "Birthday Delight",
+    description: "Cake, candlelight, and a heartfelt wish.",
+    imageUrl: "/images/photography/cake.jpg",
+  },
+  {
+    id: 4,
+    title: "Sky High Dreams",
+    description: "The beauty of man-made structures",
+    imageUrl: "/images/photography/sky.jpg",
+  },
 ];
 
 export default function Portfolio() {
@@ -79,7 +109,7 @@ export default function Portfolio() {
     setIsVisible(true);
     
     const handleScroll = () => {
-      const sections = ['home', 'about', 'skills', 'projects', 'certifications', 'achievements'];
+      const sections = ['home', 'about', 'skills', 'projects', 'certifications', 'achievements', 'photography'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -135,6 +165,7 @@ export default function Portfolio() {
     { id: 'projects', label: 'Projects', icon: <FaProjectDiagram className="w-4 h-4" /> },
     { id: 'certifications', label: 'Certifications', icon: <FaCertificate className="w-4 h-4" /> },
     { id: 'achievements', label: 'Achievements', icon: <FaMedal className="w-4 h-4" /> },
+    { id: 'photography', label: 'Photography', icon: <FaCamera className="w-4 h-4" /> },
   ];
 
   return (
@@ -383,6 +414,7 @@ export default function Portfolio() {
           />
         </div>
       </section>
+
       <section id="certifications" className="text-center py-16 bg-white/40 backdrop-blur-sm rounded-2xl shadow-lg mx-4 border border-indigo-100">
         <h2 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-8">Certifications</h2>
         <div className="flex flex-wrap justify-center gap-6">
@@ -441,6 +473,7 @@ export default function Portfolio() {
           />
         </div>
       </section>
+
       <section id="achievements" className="text-center py-16 bg-white/40 backdrop-blur-sm rounded-2xl shadow-lg mx-4 border border-indigo-100">
         <h2 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-8">Achievements</h2>
         <div className="flex flex-wrap justify-center gap-6">
@@ -453,6 +486,15 @@ export default function Portfolio() {
           <Achievement icon={<FaShieldAlt />} label="Ideathon — Phishing Attacks Awareness" />
           <Achievement icon={<FaBullhorn />} label="Design & Media Lead — TECHNOVA 2025, A National Level College Fest" />
         </div>
+      </section>
+
+      <section id="photography" className="text-center py-16 bg-white/40 backdrop-blur-sm rounded-2xl shadow-lg mx-4 border border-indigo-100">
+        <h2 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-8">Photography</h2>
+        <p className="text-gray-700 dark:text-gray-300 max-w-2xl mx-auto mb-8">
+          Capturing moments and stories through my lens. From landscapes to portraits, 
+          each photograph tells a unique story.
+        </p>
+        <PhotographyGallery />
       </section>
 
       <footer className="text-center py-8 text-gray-600 bg-white/40 backdrop-blur-sm rounded-2xl shadow-lg mx-4 border border-indigo-100">
@@ -567,6 +609,84 @@ function Certification({ icon, label, provider, certificateLink }) {
           View Certificate
         </a>
       )}
+    </div>
+  );
+}
+
+// Add the PhotographyGallery component
+function PhotographyGallery() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex === photographyData.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex === 0 ? photographyData.length - 1 : prevIndex - 1
+    );
+  };
+
+  return (
+    <div className="relative w-full max-w-4xl mx-auto">
+      <div className="relative h-[400px] rounded-xl overflow-hidden shadow-lg">
+        <div 
+          className="absolute inset-0 transition-transform duration-500 ease-in-out"
+          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+        >
+          {photographyData.map((photo, index) => (
+            <div
+              key={photo.id}
+              className="absolute top-0 left-0 w-full h-full"
+              style={{ transform: `translateX(${index * 100}%)` }}
+            >
+              <div className="relative w-full h-full group">
+                <img
+                  src={photo.imageUrl}
+                  alt={photo.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                    <h3 className="text-xl font-semibold mb-2">{photo.title}</h3>
+                    <p className="text-sm text-gray-200">{photo.description}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <button
+        onClick={prevSlide}
+        className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 dark:bg-gray-800/80 text-gray-800 dark:text-white hover:bg-white dark:hover:bg-gray-800 transition-colors duration-300 shadow-lg"
+      >
+        <FaChevronLeft className="w-6 h-6" />
+      </button>
+
+      <button
+        onClick={nextSlide}
+        className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 dark:bg-gray-800/80 text-gray-800 dark:text-white hover:bg-white dark:hover:bg-gray-800 transition-colors duration-300 shadow-lg"
+      >
+        <FaChevronRight className="w-6 h-6" />
+      </button>
+
+      <div className="flex justify-center mt-4 space-x-2">
+        {photographyData.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+              index === currentIndex
+                ? 'bg-indigo-600 dark:bg-indigo-400'
+                : 'bg-gray-300 dark:bg-gray-600'
+            }`}
+          />
+        ))}
+      </div>
     </div>
   );
 }
