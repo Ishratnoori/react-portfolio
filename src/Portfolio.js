@@ -110,8 +110,9 @@ export default function Portfolio() {
       <section id="projects" className="text-center py-16">
         <h2 className="text-4xl font-bold text-purple-600 mb-8">Projects</h2>
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          <ProjectCard title="Swachhata@Svecw" description="A MERN stack web platform enabling students to report campus cleanliness issues with photo uploads and real-time status tracking." githubLink="https://github.com/Ishratnoori/Swachatha-SVECW" liveDemoLink="https://swachatha-svecw.vercel.app/" />
+          
           <ProjectCard title="BuddyBoard" description="Interactive flashcard deck system to enhance personalized learning experiences using MEAN (Angular) components." githubLink="https://github.com/Ishratnoori/BUDDY_BOARD_Infosys_Internship_Oct2024" liveDemoLink="https://buddyboard.vercel.app/" />
+          <ProjectCard title="Swachhata@Svecw" description="A MERN stack web platform enabling students to report campus cleanliness issues with photo uploads and real-time status tracking." githubLink="https://github.com/Ishratnoori/Swachatha-SVECW" liveDemoLink="https://swachatha-svecw.vercel.app/" />
           <ProjectCard title="Employee Attrition Prediction" description="Ensemble ML model using Random Forest and XGBoost to predict employee attrition with 85% accuracy." githubLink="https://github.com/Ishratnoori/Employee-Attrition" />
           <ProjectCard title="Grbify & GoPhish" description="A demo and hands-on workshop to simulate phishing attacks for awareness training using Grbify and GoPhish platforms." />
           <ProjectCard title="Campus Event Scheduler" description="A Python + MySQL project for managing college events, giving organizers full control over scheduling." githubLink="https://github.com/Ishratnoori/CampusEventScheduler" />
