@@ -483,25 +483,25 @@ function ProjectCard({ title, description, githubLink, liveDemoLink }) {
 
 function Achievement({ icon, label }) {
   return (
-    <div className="flex flex-col items-center">
-      <div className="text-purple-600 text-4xl mb-2">{icon}</div>
-      <p className="text-gray-800 font-medium text-center">{label}</p>
+    <div className="flex flex-col items-center bg-white/50 dark:bg-gray-800/50 p-4 rounded-xl shadow-md hover:shadow-lg transition-shadow border border-indigo-100 dark:border-indigo-500/20 transform hover:-translate-y-1 transition-transform duration-300">
+      <div className="text-indigo-600 dark:text-indigo-400 text-4xl mb-2">{icon}</div>
+      <p className="text-gray-800 dark:text-gray-200 font-medium text-center">{label}</p>
     </div>
   );
 }
 
 function Certification({ icon, label, provider, certificateLink }) {
   return (
-    <div className="flex flex-col items-center bg-white shadow-md rounded-lg p-6 w-64">
-      <div className="text-purple-600 text-4xl mb-4">{icon}</div>
-      <p className="text-gray-800 font-semibold text-lg">{label}</p>
-      <p className="text-gray-500 text-sm mb-4">{provider}</p>
+    <div className="flex flex-col items-center bg-white/50 dark:bg-gray-800/50 shadow-md rounded-lg p-6 w-64 border border-indigo-100 dark:border-indigo-500/20 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+      <div className="text-indigo-600 dark:text-indigo-400 text-4xl mb-4">{icon}</div>
+      <p className="text-gray-800 dark:text-gray-200 font-semibold text-lg">{label}</p>
+      <p className="text-gray-500 dark:text-gray-400 text-sm mb-4">{provider}</p>
       {certificateLink && (
         <a
           href={certificateLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center px-4 py-2 bg-purple-100 text-purple-700 hover:bg-purple-200 rounded-lg font-medium transition"
+          className="inline-flex items-center px-4 py-2 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-400 hover:bg-indigo-200 dark:hover:bg-indigo-800/50 rounded-lg font-medium transition"
         >
           View Certificate
         </a>
