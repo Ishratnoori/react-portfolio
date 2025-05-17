@@ -35,6 +35,12 @@ import {
   FaChevronLeft,
   FaChevronRight,
 } from "react-icons/fa";
+
+// Import images
+import hiddensunundersky from './images/photography/hiddensunundersky.jpg';
+import orange from './images/photography/orange.jpg';
+import cake from './images/photography/cake.jpg';
+import sky from './images/photography/sky.jpg';
 import profilePhoto from './images/profile.jpg';
 
 const heroText = [
@@ -54,25 +60,25 @@ const photographyData = [
     id: 1,
     title: "Nature's Beauty",
     description: "Hidden Sun in the Clouds",
-    imageUrl: "images/photography/hiddensunundersky.jpg",
+    imageUrl: hiddensunundersky,
   },
   {
     id: 2,
     title: "Orange Glow",
     description: "Citrus meets creativity in the dark.",
-    imageUrl: "images/photography/orange.jpg",
+    imageUrl: orange,
   },
   {
     id: 3,
     title: "Birthday Delight",
     description: "Cake, candlelight, and a heartfelt wish.",
-    imageUrl: "images/photography/cake.jpg",
+    imageUrl: cake,
   },
   {
     id: 4,
     title: "Sky High Dreams",
     description: "The beauty of man-made structures",
-    imageUrl: "images/photography/sky.jpg",
+    imageUrl: sky,
   },
 ];
 
