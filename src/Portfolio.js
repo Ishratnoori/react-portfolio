@@ -54,25 +54,25 @@ const photographyData = [
     id: 1,
     title: "Nature's Beauty",
     description: "Hidden Sun in the Clouds",
-    imageUrl: "/images/photography/hiddensunundersky.jpg",
+    imageUrl: "images/photography/hiddensunundersky.jpg",
   },
   {
     id: 2,
     title: "Orange Glow",
     description: "Citrus meets creativity in the dark.",
-    imageUrl: "/images/photography/orange.jpg",
+    imageUrl: "images/photography/orange.jpg",
   },
   {
     id: 3,
     title: "Birthday Delight",
     description: "Cake, candlelight, and a heartfelt wish.",
-    imageUrl: "/images/photography/cake.jpg",
+    imageUrl: "images/photography/cake.jpg",
   },
   {
     id: 4,
     title: "Sky High Dreams",
     description: "The beauty of man-made structures",
-    imageUrl: "/images/photography/sky.jpg",
+    imageUrl: "images/photography/sky.jpg",
   },
 ];
 
@@ -301,7 +301,7 @@ export default function Portfolio() {
           </div>
           <div className="flex flex-col items-center md:items-start space-y-6">
             <h1 className="text-5xl font-extrabold text-gray-800 dark:text-white">
-              Holaa, I'm <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Ishrat Noori</span> 👋
+              Holaa, I'm <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">ishrat noori</span> 👋
             </h1>
             <p className="text-2xl text-gray-700 dark:text-gray-300 h-10">
               {text}
@@ -314,13 +314,13 @@ export default function Portfolio() {
                 rel="noopener noreferrer"
                 className="px-6 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-lg shadow-md transition transform hover:scale-105"
               >
-                Download Resume
+                Work With Me
               </a>
               <a
                 href="#projects"
                 className="px-6 py-2 border-2 border-indigo-600 dark:border-indigo-400 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/50 rounded-lg transition transform hover:scale-105"
               >
-                View Projects
+                Explore My Work
               </a>
             </div>
             <div className="flex gap-4 mt-4">
@@ -339,7 +339,7 @@ export default function Portfolio() {
       </section>
 
       <section id="about" className="text-center py-16 bg-white/40 dark:bg-gray-800/40 backdrop-blur-sm rounded-2xl shadow-lg mx-4 border border-indigo-100 dark:border-indigo-500/20">
-        <h2 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-4">About Me</h2>
+        <h2 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-4">🤹‍♀️ Dev. Hacker. Shutterbug. Me.</h2>
         <p className="text-gray-700 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
           I'm a passionate developer blending creativity and tech. Whether it's diving deep into cybersecurity, building full-stack applications, crafting ML models, or capturing the perfect shot—I'm always creating.
         </p>
@@ -349,13 +349,18 @@ export default function Portfolio() {
         <h2 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-8">Skills</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
           {[
-            { icon: <FaShieldAlt />, label: "Cybersecurity" },
-            { icon: <FaReact />, label: "React" },
-            { icon: <FaPython />, label: "Python" },
-            { icon: <FaCamera />, label: "Photography" },
-            { icon: <FaCode />, label: "Full-Stack Dev" },
-            { icon: <FaDesktop />, label: "UI/UX" },
-            { icon: <FaDatabase />, label: "SQL" },
+            { icon: <FaShieldAlt className="w-8 h-8" />, label: "Cybersecurity" },
+            { icon: <FaReact className="w-8 h-8" />, label: "React" },
+            { icon: <FaPython className="w-8 h-8" />, label: "Python" },
+            { icon: <FaCamera className="w-8 h-8" />, label: "Photography" },
+            { icon: <FaCode className="w-8 h-8" />, label: "Full-Stack Dev" },
+            { icon: <FaDesktop className="w-8 h-8" />, label: "UI/UX" },
+            { icon: <FaServer className="w-8 h-8" />, label: "Node.js" },
+            { icon: <FaCloud className="w-8 h-8" />, label: "AWS" },
+            { icon: <FaShieldVirus className="w-8 h-8" />, label: "Ethical Hacking" },
+            { icon: <FaGithub className="w-8 h-8" />, label: "Git & GitHub" },
+            { icon: <FaDatabase className="w-8 h-8" />, label: "SQL" },
+            { icon: <FaBolt className="w-8 h-8" />, label: "DevOps" },
           ].map((skill, index) => (
             <div 
               key={index}
@@ -368,12 +373,12 @@ export default function Portfolio() {
       </section>
 
       <section id="projects" className="text-center py-16 bg-white/40 backdrop-blur-sm rounded-2xl shadow-lg mx-4 border border-indigo-100">
-        <h2 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-8">Projects</h2>
+        <h2 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-8">Projects </h2>
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           <ProjectCard 
             title="BuddyBoard" 
             description="A MEAN stack Interactive flashcard deck system to enhance personalized learning experiences."
-            techStack={[ "Node.js", "Angular","MongoDB", "Express"]}
+            techStack={[ "Node.js", "Express","MongoDB", "Angular"]}
             role="Full-stack developer, implemented MEAN stack components"
             githubLink="https://github.com/Ishratnoori/BUDDY_BOARD_Infosys_Internship_Oct2024" 
             liveDemoLink="https://buddyboard.vercel.app/" 
@@ -381,7 +386,7 @@ export default function Portfolio() {
           <ProjectCard 
             title="Swachhata@Svecw" 
             description="A MERN stack web platform enabling students to report campus cleanliness issues."
-            techStack={[ "Node.js", "MongoDB","React", "Express"]}
+            techStack={[ "Node.js", "Express","MongoDB","React"]}
             role="Lead developer, implemented real-time status tracking"
             githubLink="https://github.com/Ishratnoori/Swachatha-SVECW" 
             liveDemoLink="https://swachatha-svecw.vercel.app/" 
@@ -416,7 +421,7 @@ export default function Portfolio() {
       </section>
 
       <section id="certifications" className="text-center py-16 bg-white/40 backdrop-blur-sm rounded-2xl shadow-lg mx-4 border border-indigo-100">
-        <h2 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-8">Certifications</h2>
+        <h2 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-8">Certified & Skilled</h2>
         <div className="flex flex-wrap justify-center gap-6">
           <Certification
             icon={<FaCode />}
@@ -475,7 +480,7 @@ export default function Portfolio() {
       </section>
 
       <section id="achievements" className="text-center py-16 bg-white/40 backdrop-blur-sm rounded-2xl shadow-lg mx-4 border border-indigo-100">
-        <h2 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-8">Achievements</h2>
+        <h2 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-8">Milestones & Moments</h2>
         <div className="flex flex-wrap justify-center gap-6">
         <Achievement icon={<FaAward />} label="Limca Book of Records — Event participant with Toastmasters International"/>
           <Achievement icon={<FaTrophy />} label="300+ Days Badge - LeetCode & CodeChef" />
@@ -489,10 +494,9 @@ export default function Portfolio() {
       </section>
 
       <section id="photography" className="text-center py-16 bg-white/40 backdrop-blur-sm rounded-2xl shadow-lg mx-4 border border-indigo-100">
-        <h2 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-8">Photography</h2>
+        <h2 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-8">Through My Lens</h2>
         <p className="text-gray-700 dark:text-gray-300 max-w-2xl mx-auto mb-8">
-          Capturing moments and stories through my lens. From landscapes to portraits, 
-          each photograph tells a unique story.
+        Every picture tells a story — I don't just capture what I see, I frame what I feel.
         </p>
         <PhotographyGallery />
       </section>
@@ -533,7 +537,7 @@ export default function Portfolio() {
 function Skill({ icon, label }) {
   return (
     <div className="flex flex-col items-center p-4 bg-white/50 dark:bg-gray-800/50 rounded-xl shadow-md hover:shadow-lg transition-shadow border border-indigo-100 dark:border-indigo-500/20">
-      <div className="text-indigo-600 dark:text-indigo-400 text-4xl mb-2">{icon}</div>
+      <div className="text-indigo-600 dark:text-indigo-400 mb-2">{icon}</div>
       <p className="text-gray-800 dark:text-gray-200 font-medium">{label}</p>
     </div>
   );
