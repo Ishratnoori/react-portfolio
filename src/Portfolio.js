@@ -20,7 +20,6 @@ import {
   FaShieldVirus,
   FaGithub,
   FaLinkedin,
-  FaTwitter,
   FaEnvelope,
   FaBars,
   FaTimes,
@@ -275,7 +274,7 @@ export default function Portfolio() {
             </p>
             <div className="flex gap-4">
               <a
-                href="https://drive.google.com/file/d/12pUp0zEQc2v-BIUR4N4ew9YLKLlyuxkC/view?usp=drive_link"
+                href="https://drive.google.com/file/d/1s8ZteP7qciSKh5pPRboDU8-q8ULpAFnA/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-lg shadow-md transition transform hover:scale-105"
@@ -293,10 +292,10 @@ export default function Portfolio() {
               <a href="https://github.com/Ishratnoori" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-purple-600 transition">
                 <FaGithub size={24} />
               </a>
-              <a href="https://linkedin.com/in/ishrat-noori" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-purple-600 transition">
+              <a href="https://www.linkedin.com/in/ishrat-noori-4b3b70254/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-purple-600 transition">
                 <FaLinkedin size={24} />
               </a>
-              <a href="mailto:your.email@example.com" className="text-gray-600 hover:text-purple-600 transition">
+              <a href="mailto:ishratnoori18@gmail.com" className="text-gray-600 hover:text-purple-600 transition">
                 <FaEnvelope size={24} />
               </a>
             </div>
