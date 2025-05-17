@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   FaShieldAlt,
   FaReact,
@@ -34,7 +34,10 @@ import {
   FaCoffee,
   FaChevronLeft,
   FaChevronRight,
+  FaFileAlt,
 } from "react-icons/fa";
+import { motion } from "framer-motion";
+import emailjs from '@emailjs/browser';
 
 // Import images
 import hiddensunundersky from './images/photography/hiddensunundersky.jpg';
@@ -82,6 +85,22 @@ const photographyData = [
   },
 ];
 
+// Animation variants
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
 export default function Portfolio() {
   const [text, setText] = useState("");
   const [index, setIndex] = useState(0);
@@ -90,6 +109,9 @@ export default function Portfolio() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const [formStatus, setFormStatus] = useState({ type: '', message: '' });
+  const formRef = useRef();
 
   useEffect(() => {
     // Check for saved theme preference
@@ -173,6 +195,45 @@ export default function Portfolio() {
     { id: 'achievements', label: 'Achievements', icon: <FaMedal className="w-4 h-4" /> },
     { id: 'photography', label: 'Photography', icon: <FaCamera className="w-4 h-4" /> },
   ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 500);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    setFormStatus({ type: 'loading', message: 'Sending...' });
+
+    emailjs.sendForm(
+      'service_cu4z01e',
+      'template_kunufli',
+      formRef.current,
+      'vi8czVmKluUQkMS7E'
+    )
+      .then((result) => {
+        setFormStatus({ type: 'success', message: 'Message sent successfully! I will get back to you soon.' });
+        formRef.current.reset();
+      })
+      .catch((error) => {
+        console.error('EmailJS error:', error);
+        setFormStatus({ 
+          type: 'error', 
+          message: 'Failed to send message. Please try again or email me directly at ishratnoori18@gmail.com' 
+        });
+      });
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 p-6 space-y-16 transition-colors duration-300">
@@ -507,6 +568,137 @@ export default function Portfolio() {
         <PhotographyGallery />
       </section>
 
+      <section id="contact" className="text-center py-16 bg-white/40 backdrop-blur-sm rounded-2xl shadow-lg mx-4 border border-indigo-100">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+          className="max-w-4xl mx-auto"
+        >
+          <h2 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-4">Get in Touch</h2>
+          <p className="text-gray-700 dark:text-gray-300 max-w-2xl mx-auto mb-12">
+            Have a project in mind or want to collaborate? I'd love to hear from you!
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-8 items-start">
+            <motion.div
+              variants={fadeInUp}
+              className="text-left space-y-6"
+            >
+              <div className="bg-white/50 dark:bg-gray-800/50 p-6 rounded-xl shadow-md border border-indigo-100 dark:border-indigo-500/20">
+                <h3 className="text-xl font-semibold text-indigo-700 dark:text-indigo-400 mb-4">Let's Connect</h3>
+                <div className="space-y-4">
+                  <a
+                    href="mailto:ishratnoori18@gmail.com"
+                    className="flex items-center space-x-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                  >
+                    <FaEnvelope className="w-5 h-5" />
+                    <span>ishratnoori18@gmail.com</span>
+                  </a>
+                  <a
+                    href="https://linkedin.com/in/ishrat-noori"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                  >
+                    <FaLinkedin className="w-5 h-5" />
+                    <span>LinkedIn Profile</span>
+                  </a>
+                  <a
+                    href="https://github.com/Ishratnoori"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                  >
+                    <FaGithub className="w-5 h-5" />
+                    <span>GitHub Profile</span>
+                  </a>
+                </div>
+              </div>
+
+              <div className="bg-white/50 dark:bg-gray-800/50 p-6 rounded-xl shadow-md border border-indigo-100 dark:border-indigo-500/20">
+                <h3 className="text-xl font-semibold text-indigo-700 dark:text-indigo-400 mb-4">Quick Links</h3>
+                <div className="space-y-4">
+                  <a
+                    href="https://drive.google.com/file/d/1s8ZteP7qciSKh5pPRboDU8-q8ULpAFnA/view?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                  >
+                    <FaFileAlt className="w-5 h-5" />
+                    <span>Download Resume</span>
+                  </a>
+                  <a
+                    href="#projects"
+                    className="flex items-center space-x-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                  >
+                    <FaProjectDiagram className="w-5 h-5" />
+                    <span>View Projects</span>
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              variants={staggerContainer}
+              className="bg-white/50 dark:bg-gray-800/50 p-6 rounded-xl shadow-md border border-indigo-100 dark:border-indigo-500/20"
+            >
+              <form ref={formRef} onSubmit={sendEmail} className="space-y-6">
+                <motion.div variants={fadeInUp}>
+                  <input
+                    type="text"
+                    name="user_name"
+                    placeholder="Your Name"
+                    required
+                    className="w-full px-4 py-3 rounded-lg bg-white/50 dark:bg-gray-800/50 border border-indigo-100 dark:border-indigo-500/20 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 transition-all"
+                  />
+                </motion.div>
+                <motion.div variants={fadeInUp}>
+                  <input
+                    type="email"
+                    name="user_email"
+                    placeholder="Your Email"
+                    required
+                    className="w-full px-4 py-3 rounded-lg bg-white/50 dark:bg-gray-800/50 border border-indigo-100 dark:border-indigo-500/20 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 transition-all"
+                  />
+                </motion.div>
+                <motion.div variants={fadeInUp}>
+                  <textarea
+                    name="message"
+                    placeholder="Your Message"
+                    required
+                    rows="5"
+                    className="w-full px-4 py-3 rounded-lg bg-white/50 dark:bg-gray-800/50 border border-indigo-100 dark:border-indigo-500/20 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 transition-all resize-none"
+                  ></textarea>
+                </motion.div>
+                <motion.div variants={fadeInUp}>
+                  <button
+                    type="submit"
+                    className="w-full px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400"
+                  >
+                    Send Message
+                  </button>
+                </motion.div>
+                {formStatus.message && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className={`text-sm ${
+                      formStatus.type === 'success' ? 'text-green-600' :
+                      formStatus.type === 'error' ? 'text-red-600' :
+                      'text-gray-600'
+                    }`}
+                  >
+                    {formStatus.message}
+                  </motion.div>
+                )}
+              </form>
+            </motion.div>
+          </div>
+        </motion.div>
+      </section>
+
       <footer className="text-center py-8 text-gray-600 bg-white/40 backdrop-blur-sm rounded-2xl shadow-lg mx-4 border border-indigo-100">
         <div className="flex justify-center space-x-4 mb-4">
           <a 
@@ -536,22 +728,39 @@ export default function Portfolio() {
           © 2025 Ishrat Noori | Built with 💜 and <FaCoffee className="inline-block" />
         </p>
       </footer>
+
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 p-3 rounded-full bg-indigo-600 text-white shadow-lg hover:bg-indigo-700 transition-all duration-300 transform hover:scale-110 z-50"
+          aria-label="Scroll to top"
+        >
+          <FaChevronLeft className="w-6 h-6 transform rotate-90" />
+        </button>
+      )}
     </div>
   );
 }
 
 function Skill({ icon, label }) {
   return (
-    <div className="flex flex-col items-center p-4 bg-white/50 dark:bg-gray-800/50 rounded-xl shadow-md hover:shadow-lg transition-shadow border border-indigo-100 dark:border-indigo-500/20">
+    <motion.div
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      className="flex flex-col items-center p-4 bg-white/50 dark:bg-gray-800/50 rounded-xl shadow-md hover:shadow-lg transition-shadow border border-indigo-100 dark:border-indigo-500/20"
+    >
       <div className="text-indigo-600 dark:text-indigo-400 mb-2">{icon}</div>
       <p className="text-gray-800 dark:text-gray-200 font-medium">{label}</p>
-    </div>
+    </motion.div>
   );
 }
 
 function ProjectCard({ title, description, techStack = [], role = "", githubLink, liveDemoLink }) {
   return (
-    <div className="border border-indigo-200 dark:border-indigo-500/20 rounded-xl p-6 bg-white/50 dark:bg-gray-800/50 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+    <motion.div
+      whileHover={{ y: -5 }}
+      className="border border-indigo-200 dark:border-indigo-500/20 rounded-xl p-6 bg-white/50 dark:bg-gray-800/50 shadow-md hover:shadow-xl transition-all duration-300"
+    >
       <h3 className="text-xl font-semibold text-indigo-700 dark:text-indigo-400 mb-2">{title}</h3>
       <p className="text-gray-700 dark:text-gray-300 mb-4">{description}</p>
       {role && (
@@ -590,7 +799,7 @@ function ProjectCard({ title, description, techStack = [], role = "", githubLink
           </a>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -626,6 +835,15 @@ function Certification({ icon, label, provider, certificateLink }) {
 // Add the PhotographyGallery component
 function PhotographyGallery() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading time for images
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => 
@@ -638,6 +856,14 @@ function PhotographyGallery() {
       prevIndex === 0 ? photographyData.length - 1 : prevIndex - 1
     );
   };
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-[400px]">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-indigo-600"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="relative w-full max-w-4xl mx-auto">
@@ -657,6 +883,7 @@ function PhotographyGallery() {
                   src={photo.imageUrl}
                   alt={photo.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  onLoad={() => setIsLoading(false)}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
@@ -673,6 +900,7 @@ function PhotographyGallery() {
       <button
         onClick={prevSlide}
         className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 dark:bg-gray-800/80 text-gray-800 dark:text-white hover:bg-white dark:hover:bg-gray-800 transition-colors duration-300 shadow-lg"
+        aria-label="Previous photo"
       >
         <FaChevronLeft className="w-6 h-6" />
       </button>
@@ -680,6 +908,7 @@ function PhotographyGallery() {
       <button
         onClick={nextSlide}
         className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 dark:bg-gray-800/80 text-gray-800 dark:text-white hover:bg-white dark:hover:bg-gray-800 transition-colors duration-300 shadow-lg"
+        aria-label="Next photo"
       >
         <FaChevronRight className="w-6 h-6" />
       </button>
@@ -694,6 +923,7 @@ function PhotographyGallery() {
                 ? 'bg-indigo-600 dark:bg-indigo-400'
                 : 'bg-gray-300 dark:bg-gray-600'
             }`}
+            aria-label={`Go to photo ${index + 1}`}
           />
         ))}
       </div>
