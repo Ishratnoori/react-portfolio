@@ -35,6 +35,10 @@ import {
   FaChevronLeft,
   FaChevronRight,
   FaFileAlt,
+  FaGraduationCap,
+  FaBriefcase,
+  FaCalendarAlt,
+  FaMapMarkerAlt,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 import emailjs from '@emailjs/browser';
@@ -101,6 +105,45 @@ const staggerContainer = {
   }
 };
 
+// Initialize EmailJS
+emailjs.init("vi8czVmKluUQkMS7E");
+
+// Add Timeline component
+function TimelineItem({ date, title, subtitle, description, icon, type }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className="relative pl-8 pb-8 last:pb-0"
+    >
+      {/* Timeline line */}
+      <div className="absolute left-3 top-0 bottom-0 w-0.5 bg-gradient-to-b from-indigo-500 to-purple-500"></div>
+      
+      {/* Timeline dot */}
+      <div className="absolute left-0 top-0 w-6 h-6 rounded-full bg-white dark:bg-gray-800 border-2 border-indigo-500 dark:border-indigo-400 flex items-center justify-center">
+        {icon}
+      </div>
+
+      {/* Content */}
+      <div className="bg-white/50 dark:bg-gray-800/50 rounded-xl p-6 shadow-lg border border-indigo-100 dark:border-indigo-500/20 hover:shadow-xl transition-all duration-300">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+          <div>
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{title}</h3>
+            <p className="text-indigo-600 dark:text-indigo-400">{subtitle}</p>
+          </div>
+          <div className="flex items-center space-x-2 mt-2 md:mt-0">
+            <FaCalendarAlt className="text-gray-500 dark:text-gray-400" />
+            <span className="text-sm text-gray-600 dark:text-gray-300">{date}</span>
+          </div>
+        </div>
+        <p className="text-gray-700 dark:text-gray-300">{description}</p>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function Portfolio() {
   const [text, setText] = useState("");
   const [index, setIndex] = useState(0);
@@ -111,6 +154,7 @@ export default function Portfolio() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [formStatus, setFormStatus] = useState({ type: '', message: '' });
+  const [emailError, setEmailError] = useState('');
   const formRef = useRef();
 
   useEffect(() => {
@@ -212,8 +256,30 @@ export default function Portfolio() {
     });
   };
 
+  // Add email validation function
+  const validateEmail = (email) => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+  };
+
+  const handleEmailChange = (e) => {
+    const email = e.target.value;
+    if (email && !validateEmail(email)) {
+      setEmailError('Please enter a valid email address');
+    } else {
+      setEmailError('');
+    }
+  };
+
   const sendEmail = (e) => {
     e.preventDefault();
+    const email = formRef.current.user_email.value;
+    
+    if (!validateEmail(email)) {
+      setEmailError('Please enter a valid email address');
+      return;
+    }
+
     setFormStatus({ type: 'loading', message: 'Sending...' });
 
     emailjs.sendForm(
@@ -225,6 +291,7 @@ export default function Portfolio() {
       .then((result) => {
         setFormStatus({ type: 'success', message: 'Message sent successfully! I will get back to you soon.' });
         formRef.current.reset();
+        setEmailError('');
       })
       .catch((error) => {
         console.error('EmailJS error:', error);
@@ -412,6 +479,76 @@ export default function Portfolio() {
         </p>
       </section>
 
+      {/* Add Timeline section after About section */}
+      <section id="timeline" className="text-center py-16 bg-white/40 dark:bg-gray-800/40 backdrop-blur-sm rounded-2xl shadow-lg mx-4 border border-indigo-100 dark:border-indigo-500/20">
+        <h2 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-8">Journey So Far</h2>
+        
+        <div className="max-w-4xl mx-auto">
+          {/* Education Timeline */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-6 flex items-center justify-center">
+              <FaGraduationCap className="mr-2 text-indigo-600 dark:text-indigo-400" />
+              Education
+            </h3>
+            <div className="space-y-4">
+              <TimelineItem
+                date="2022 - Present"
+                title="B.Tech in Computer Science"
+                subtitle="Shri Vishnu Engineering College for Women"
+                description="CSE with Specialization in Cybersecurity. Active member of technical clubs and coding communities."
+                icon={<FaGraduationCap className="text-indigo-600 dark:text-indigo-400" />}
+                type="education"
+              />
+              <TimelineItem
+                date="2020 - 2022"
+                title="Intermediate Education"
+                subtitle="Sri Chaitanya Junior College"
+                description="Completed coursework in Mathematics, Physics & Chemistry (MPC) with a 9.3 GPA."
+
+
+                icon={<FaGraduationCap className="text-indigo-600 dark:text-indigo-400" />}
+                type="education"
+              />
+            </div>
+          </div>
+
+          {/* Experience Timeline */}
+          <div>
+            <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-6 flex items-center justify-center">
+              <FaBriefcase className="mr-2 text-indigo-600 dark:text-indigo-400" />
+              Experience
+            </h3>
+            <div className="space-y-4">
+              <TimelineItem
+                date="Nov 2024- Jan 2025"
+                title="Full Stack Developer Intern"
+                subtitle="Infosys"
+                description="Developed BuddyBoard - A MEAN stack Interactive flashcard deck system. Implemented full-stack features and collaborated with cross-functional teams."
+                icon={<FaBriefcase className="text-indigo-600 dark:text-indigo-400" />}
+                type="experience"
+              />
+              <TimelineItem
+                date="2024"
+                title="Cybersecurity Awareness Coordinator"
+                subtitle="Awareness Initiative"
+                description="Helped educate juniors on cybersecurity topics through sessions covering ethical hacking, phishing simulations, and online safety best practices."
+                icon={<FaBriefcase className="text-indigo-600 dark:text-indigo-400" />}
+                type="experience"
+              />
+              <TimelineItem
+                date="2025"
+                title="Design & Media Lead"
+                subtitle="TECHNOVA 2025, A College Fest"
+                description="Led the design and media team for the national-level college fest, managing digital content and visual communications."
+                icon={<FaBriefcase className="text-indigo-600 dark:text-indigo-400" />
+}
+                type="experience"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="skills" className="text-center py-16 bg-white/40 backdrop-blur-sm rounded-2xl shadow-lg mx-4 border border-indigo-100">
         <h2 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-8">Skills</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
@@ -550,7 +687,7 @@ export default function Portfolio() {
         <h2 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-8">Milestones & Moments</h2>
         <div className="flex flex-wrap justify-center gap-6">
         <Achievement icon={<FaAward />} label="Limca Book of Records — Event participant with Toastmasters International"/>
-          <Achievement icon={<FaTrophy />} label="300+ Days Badge - LeetCode & CodeChef" />
+          <Achievement icon={<FaTrophy />} label="400+ Days Badge - LeetCode & CodeChef" />
           <Achievement icon={<FaStar />} label="HackerRank 5★ in C & Python" />
           <Achievement icon={<FaBolt />} label="Hackathon — Socio-Tech 24-Hour Challenge Participant" />
           <Achievement icon={<FaAward />} label="Top Voice - LinkedIn (Social Media & Critical Thinking)" />
@@ -597,7 +734,7 @@ export default function Portfolio() {
                     <span>ishratnoori18@gmail.com</span>
                   </a>
                   <a
-                    href="https://linkedin.com/in/ishrat-noori"
+                    href="https://www.linkedin.com/in/ishrat-noori-4b3b70254/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center space-x-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
@@ -642,52 +779,74 @@ export default function Portfolio() {
 
             <motion.div
               variants={staggerContainer}
-              className="bg-white/50 dark:bg-gray-800/50 p-6 rounded-xl shadow-md border border-indigo-100 dark:border-indigo-500/20"
+              className="bg-white/50 dark:bg-gray-800/50 p-8 rounded-xl shadow-lg border border-indigo-100 dark:border-indigo-500/20 hover:shadow-xl transition-all duration-300"
             >
               <form ref={formRef} onSubmit={sendEmail} className="space-y-6">
-                <motion.div variants={fadeInUp}>
+                <motion.div variants={fadeInUp} className="relative group">
                   <input
                     type="text"
                     name="user_name"
                     placeholder="Your Name"
                     required
-                    className="w-full px-4 py-3 rounded-lg bg-white/50 dark:bg-gray-800/50 border border-indigo-100 dark:border-indigo-500/20 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 transition-all"
+                    className="w-full px-6 py-4 rounded-xl bg-white/70 dark:bg-gray-800/70 border-2 border-indigo-100 dark:border-indigo-500/20 focus:outline-none focus:border-indigo-500 dark:focus:border-indigo-400 transition-all text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 group-hover:border-indigo-300 dark:group-hover:border-indigo-400"
                   />
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-indigo-500/0 via-indigo-500/0 to-indigo-500/0 group-hover:from-indigo-500/5 group-hover:via-indigo-500/10 group-hover:to-indigo-500/5 transition-all duration-300 pointer-events-none"></div>
                 </motion.div>
-                <motion.div variants={fadeInUp}>
+                <motion.div variants={fadeInUp} className="relative group">
                   <input
                     type="email"
                     name="user_email"
                     placeholder="Your Email"
                     required
-                    className="w-full px-4 py-3 rounded-lg bg-white/50 dark:bg-gray-800/50 border border-indigo-100 dark:border-indigo-500/20 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 transition-all"
+                    onChange={handleEmailChange}
+                    pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                    className={`w-full px-6 py-4 rounded-xl bg-white/70 dark:bg-gray-800/70 border-2 ${
+                      emailError 
+                        ? 'border-red-500 dark:border-red-400' 
+                        : 'border-indigo-100 dark:border-indigo-500/20'
+                    } focus:outline-none focus:border-indigo-500 dark:focus:border-indigo-400 transition-all text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 group-hover:border-indigo-300 dark:group-hover:border-indigo-400`}
                   />
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-indigo-500/0 via-indigo-500/0 to-indigo-500/0 group-hover:from-indigo-500/5 group-hover:via-indigo-500/10 group-hover:to-indigo-500/5 transition-all duration-300 pointer-events-none"></div>
+                  {emailError && (
+                    <motion.p
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="absolute -bottom-6 left-0 text-sm text-red-500 dark:text-red-400"
+                    >
+                      {emailError}
+                    </motion.p>
+                  )}
                 </motion.div>
-                <motion.div variants={fadeInUp}>
+                <motion.div variants={fadeInUp} className="relative group">
                   <textarea
                     name="message"
                     placeholder="Your Message"
                     required
                     rows="5"
-                    className="w-full px-4 py-3 rounded-lg bg-white/50 dark:bg-gray-800/50 border border-indigo-100 dark:border-indigo-500/20 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 transition-all resize-none"
+                    className="w-full px-6 py-4 rounded-xl bg-white/70 dark:bg-gray-800/70 border-2 border-indigo-100 dark:border-indigo-500/20 focus:outline-none focus:border-indigo-500 dark:focus:border-indigo-400 transition-all text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 group-hover:border-indigo-300 dark:group-hover:border-indigo-400 resize-none"
                   ></textarea>
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-indigo-500/0 via-indigo-500/0 to-indigo-500/0 group-hover:from-indigo-500/5 group-hover:via-indigo-500/10 group-hover:to-indigo-500/5 transition-all duration-300 pointer-events-none"></div>
                 </motion.div>
                 <motion.div variants={fadeInUp}>
                   <button
                     type="submit"
-                    className="w-full px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400"
+                    className="w-full px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 shadow-lg hover:shadow-xl relative overflow-hidden group"
                   >
-                    Send Message
+                    <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 via-white/10 to-indigo-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+                    <span className="relative flex items-center justify-center space-x-2">
+                      <FaEnvelope className="w-5 h-5" />
+                      <span>Send Message</span>
+                    </span>
                   </button>
                 </motion.div>
                 {formStatus.message && (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className={`text-sm ${
-                      formStatus.type === 'success' ? 'text-green-600' :
-                      formStatus.type === 'error' ? 'text-red-600' :
-                      'text-gray-600'
+                    className={`text-sm font-medium ${
+                      formStatus.type === 'success' ? 'text-green-600 dark:text-green-400' :
+                      formStatus.type === 'error' ? 'text-red-600 dark:text-red-400' :
+                      'text-gray-600 dark:text-gray-400'
                     }`}
                   >
                     {formStatus.message}
@@ -710,7 +869,7 @@ export default function Portfolio() {
             <FaGithub size={24} />
           </a>
           <a 
-            href="https://linkedin.com/in/ishrat-noori" 
+            href="https://www.linkedin.com/in/ishrat-noori-4b3b70254/" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="text-gray-600 hover:text-indigo-600 transition transform hover:scale-110"
