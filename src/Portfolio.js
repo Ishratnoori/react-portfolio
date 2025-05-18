@@ -38,7 +38,6 @@ import {
   FaGraduationCap,
   FaBriefcase,
   FaCalendarAlt,
-  FaMapMarkerAlt,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 import emailjs from '@emailjs/browser';
@@ -386,41 +385,6 @@ export default function Portfolio() {
               </button>
             </div>
           </div>
-
-          <div
-            className={`md:hidden transition-all duration-300 ease-in-out ${
-              isMobileMenuOpen
-                ? 'max-h-96 opacity-100'
-                : 'max-h-0 opacity-0 pointer-events-none'
-            }`}
-          >
-            <div className="relative mt-2">
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 dark:from-purple-500/20 dark:to-pink-500/20 backdrop-blur-md rounded-xl shadow-lg border border-purple-200/20 dark:border-purple-500/20"></div>
-              <div className="relative px-2 pt-2 pb-3 space-y-1">
-                {navLinks.map((link) => (
-                  <button
-                    key={link.id}
-                    onClick={() => scrollToSection(link.id)}
-                    className={`group flex items-center space-x-2 px-3 py-2 rounded-lg text-base font-medium transition-all duration-300 w-full ${
-                      activeSection === link.id
-                        ? 'text-white'
-                        : 'text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400'
-                    }`}
-                  >
-                    <div className={`absolute inset-0 rounded-lg transition-all duration-300 ${
-                      activeSection === link.id
-                        ? 'bg-gradient-to-r from-indigo-600 to-purple-600'
-                        : 'bg-white/50 dark:bg-gray-800/50 group-hover:bg-indigo-100/50 dark:group-hover:bg-indigo-900/50'
-                    }`}></div>
-                    <span className="relative transition-transform duration-300 group-hover:scale-110">
-                      {link.icon}
-                    </span>
-                    <span className="relative">{link.label}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
         </div>
       </nav>
 
@@ -479,7 +443,6 @@ export default function Portfolio() {
         </p>
       </section>
 
-      {/* Add Timeline section after About section */}
       <section id="timeline" className="text-center py-16 bg-white/40 dark:bg-gray-800/40 backdrop-blur-sm rounded-2xl shadow-lg mx-4 border border-indigo-100 dark:border-indigo-500/20">
         <h2 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-8">Journey So Far</h2>
         
@@ -504,8 +467,6 @@ export default function Portfolio() {
                 title="Intermediate Education"
                 subtitle="Sri Chaitanya Junior College"
                 description="Completed coursework in Mathematics, Physics & Chemistry (MPC) with a 9.3 GPA."
-
-
                 icon={<FaGraduationCap className="text-indigo-600 dark:text-indigo-400" />}
                 type="education"
               />
@@ -540,8 +501,7 @@ export default function Portfolio() {
                 title="Design & Media Lead"
                 subtitle="TECHNOVA 2025, A College Fest"
                 description="Led the design and media team for the national-level college fest, managing digital content and visual communications."
-                icon={<FaBriefcase className="text-indigo-600 dark:text-indigo-400" />
-}
+                icon={<FaBriefcase className="text-indigo-600 dark:text-indigo-400" />}
                 type="experience"
               />
             </div>
@@ -577,12 +537,12 @@ export default function Portfolio() {
       </section>
 
       <section id="projects" className="text-center py-16 bg-white/40 backdrop-blur-sm rounded-2xl shadow-lg mx-4 border border-indigo-100">
-        <h2 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-8">Projects </h2>
+        <h2 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-8">Projects</h2>
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           <ProjectCard 
             title="BuddyBoard" 
             description="A MEAN stack Interactive flashcard deck system to enhance personalized learning experiences."
-            techStack={[ "Node.js", "Express","MongoDB", "Angular"]}
+            techStack={["Node.js", "Express", "MongoDB", "Angular"]}
             role="Full-stack developer, implemented MEAN stack components"
             githubLink="https://github.com/Ishratnoori/BUDDY_BOARD_Infosys_Internship_Oct2024" 
             liveDemoLink="https://buddyboard.vercel.app/" 
@@ -590,7 +550,7 @@ export default function Portfolio() {
           <ProjectCard 
             title="Swachhata@Svecw" 
             description="A MERN stack web platform enabling students to report campus cleanliness issues."
-            techStack={[ "Node.js", "Express","MongoDB","React"]}
+            techStack={["Node.js", "Express", "MongoDB", "React"]}
             role="Lead developer, implemented real-time status tracking"
             githubLink="https://github.com/Ishratnoori/Swachatha-SVECW" 
             liveDemoLink="https://swachatha-svecw.vercel.app/" 
@@ -604,7 +564,7 @@ export default function Portfolio() {
           />
           <ProjectCard 
             title="Grbify & GoPhish" 
-            description="A demo and hands-on workshop to simulate phishing attacks for awareness training,  Live data capture techniques using Grbify (IP, location, browser data)."
+            description="A demo and hands-on workshop to simulate phishing attacks for awareness training, Live data capture techniques using Grbify (IP, location, browser data)."
             techStack={["Python", "Cybersecurity", "GoPhish"]}
             role="Cyber Awareness Lead"
           />
