@@ -46,7 +46,7 @@ import emailjs from '@emailjs/browser';
 import hiddensunundersky from './images/photography/hiddensunundersky.jpg';
 import orange from './images/photography/orange.jpg';
 import cake from './images/photography/cake.jpg';
-import sky from './images/photography/sky.jpg';
+import sky from './images/photography/plane.jpg';
 import profilePhoto from './images/profile.jpg';
 
 const heroText = [
@@ -520,11 +520,8 @@ export default function Portfolio() {
             { icon: <FaCode className="w-8 h-8" />, label: "Full-Stack Dev" },
             { icon: <FaDesktop className="w-8 h-8" />, label: "UI/UX" },
             { icon: <FaServer className="w-8 h-8" />, label: "Node.js" },
-            { icon: <FaCloud className="w-8 h-8" />, label: "AWS" },
-            { icon: <FaShieldVirus className="w-8 h-8" />, label: "Ethical Hacking" },
             { icon: <FaGithub className="w-8 h-8" />, label: "Git & GitHub" },
             { icon: <FaDatabase className="w-8 h-8" />, label: "SQL" },
-            { icon: <FaBolt className="w-8 h-8" />, label: "DevOps" },
           ].map((skill, index) => (
             <div 
               key={index}
@@ -700,7 +697,7 @@ export default function Portfolio() {
                     className="flex items-center space-x-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                   >
                     <FaLinkedin className="w-5 h-5" />
-                    <span>LinkedIn Profile</span>
+                    <span>LinkedIn</span>
                   </a>
                   <a
                     href="https://github.com/Ishratnoori"
@@ -709,7 +706,7 @@ export default function Portfolio() {
                     className="flex items-center space-x-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                   >
                     <FaGithub className="w-5 h-5" />
-                    <span>GitHub Profile</span>
+                    <span>GitHub</span>
                   </a>
                 </div>
               </div>
